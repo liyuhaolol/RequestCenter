@@ -16,7 +16,7 @@
 
 - 在gradle中:
 ```gradle
-    implementation 'spa.lyh.cn:ft_httpcenter:1.0.0'
+    implementation 'spa.lyh.cn:ft_httpcenter:1.0.1'
 ```
 
 ## 引用的主要类
