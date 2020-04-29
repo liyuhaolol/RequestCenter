@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+
 import okhttp3.Call;
 import spa.lyh.cn.ft_httpcenter.exception.BaseException;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object responseObj) {
                 JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) responseObj;
-                if (jsonF.code == BaseException.SUCCESS){
+                if (jsonF.code == MyException.SUCCESS){
                     aaa.setText(jsonF.data.getVersionInfo());
                 }
             }

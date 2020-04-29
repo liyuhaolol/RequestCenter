@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import java.lang.reflect.Constructor;
@@ -226,7 +225,7 @@ public class BaseRequestCenter {
      * @param className
      * @return
      */
-    public static Dialog generateDialog(Activity activity,String className){
+    public static Dialog generateDialog(Activity activity, String className){
         Dialog dialog;
         try{
             Class clazz = Class.forName(className);
