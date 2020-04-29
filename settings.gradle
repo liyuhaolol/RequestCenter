@@ -1,0 +1,3 @@
+rootProject.name='RequestCenter'
+include ':app'
+include ':ft_httpcenter'
