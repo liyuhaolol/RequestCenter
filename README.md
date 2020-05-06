@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.0.2更新
+
+- 最低sdk版本修改为21
+
 ## 1.0.1更新
 
 - 去除exception里无用的拉美相关code
@@ -16,7 +20,7 @@
 
 - 在gradle中:
 ```gradle
-    implementation 'spa.lyh.cn:ft_httpcenter:1.0.1'
+    implementation 'spa.lyh.cn:ft_httpcenter:1.0.2'
 ```
 
 ## 引用的主要类
