@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName "1.0.2"
+        versionCode versions.versionCode
+        versionName versions.versionName
 
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -26,7 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'spa.lyh.cn:lib_https:1.0.4'
+    api "spa.lyh.cn:lib_https:${versions.lib_https}"
 }
 
 def siteUrl = 'https://github.com/liyuhaolol/RequestCenter'
@@ -37,7 +37,7 @@ def libName = 'ft_httpcenter'
 
 group = "spa.lyh.cn"
 
-version = "1.0.2"
+version = versions.versionName
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -67,7 +67,7 @@ install{
                     dependency{
                         groupId 'spa.lyh.cn'
                         artifactId 'lib_https'
-                        version '1.0.3'
+                        version versions.lib_https
                         scope 'api'
                     }
                 }

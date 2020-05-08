@@ -1,0 +1,10 @@
+ext {
+    versions = [
+            versionCode : 4,
+            versionName : '1.0.3',
+
+            lib_https : '1.0.6'
+
+
+    ]
+}

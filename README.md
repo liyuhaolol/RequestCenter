@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.0.3更新
+
+- 更新lib_https到1.0.6版本
+
 ## 1.0.2更新
 
 - 最低sdk版本修改为21
@@ -20,7 +24,7 @@
 
 - 在gradle中:
 ```gradle
-    implementation 'spa.lyh.cn:ft_httpcenter:1.0.2'
+    implementation 'spa.lyh.cn:ft_httpcenter:1.0.3'
 ```
 
 ## 引用的主要类
