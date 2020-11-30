@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.0.4更新
+
+- 更新lib_https到1.0.7版本
+
 ## 1.0.3更新
 
 - 更新lib_https到1.0.6版本
@@ -24,7 +28,7 @@
 
 - 在gradle中:
 ```gradle
-    implementation 'spa.lyh.cn:ft_httpcenter:1.0.3'
+    implementation 'spa.lyh.cn:ft_httpcenter:1.0.4'
 ```
 
 ## 引用的主要类
