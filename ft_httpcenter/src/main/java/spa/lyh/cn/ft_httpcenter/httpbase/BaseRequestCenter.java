@@ -11,6 +11,7 @@ import java.lang.reflect.Constructor;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Headers;
 import spa.lyh.cn.lib_https.HttpClient;
 import spa.lyh.cn.lib_https.listener.DisposeDataHandle;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
@@ -35,14 +36,14 @@ public class BaseRequestCenter {
         Call call = HttpClient.getInstance(activity).sendResquest(CommonRequest.
                 createPostRequest(url, params, headers, isApkInDebug(activity)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
-            public void onSuccess(Object responseObj) {
+            public void onSuccess(Headers headerData,Object bodyData) {
                 if (!activity.isFinishing()){
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
                     if (listener != null){
                         try {
-                            listener.onSuccess(responseObj);
+                            listener.onSuccess(headerData,bodyData);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -84,10 +85,10 @@ public class BaseRequestCenter {
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createPostRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
-            public void onSuccess(Object responseObj) {
+            public void onSuccess(Headers headerData,Object bodyData) {
                 if (listener != null){
                     try {
-                        listener.onSuccess(responseObj);
+                        listener.onSuccess(headerData,bodyData);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -120,13 +121,13 @@ public class BaseRequestCenter {
         Call call = HttpClient.getInstance(activity).sendResquest(CommonRequest.createUploadRequest(url,params,fileList,headers,isApkInDebug(activity),uploadListener),
                 new DisposeDataHandle(new DisposeDataListener() {
                     @Override
-                    public void onSuccess(Object responseObj) {
+                    public void onSuccess(Headers headerData,Object bodyData) {
                         if (!activity.isFinishing()){
                             if (loadingDialog != null && loadingDialog.isShowing()) {
                                 loadingDialog.dismiss();
                             }
                             if (listener != null){
-                                listener.onSuccess(responseObj);
+                                listener.onSuccess(headerData,bodyData);
                             }
                         }
                     }
@@ -161,13 +162,13 @@ public class BaseRequestCenter {
         Call call = HttpClient.getInstance(activity).sendResquest(CommonRequest.
                 createGetRequest(url, params, headers, isApkInDebug(activity)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
-            public void onSuccess(Object responseObj) {
+            public void onSuccess(Headers headerData,Object bodyData) {
                 if (!activity.isFinishing()){
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
                     if (listener != null){
-                        listener.onSuccess(responseObj);
+                        listener.onSuccess(headerData,bodyData);
                     }
                 }
             }
@@ -197,9 +198,9 @@ public class BaseRequestCenter {
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createGetRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
-            public void onSuccess(Object responseObj) {
+            public void onSuccess(Headers headerData,Object bodyData) {
                 if (listener != null){
-                    listener.onSuccess(responseObj);
+                    listener.onSuccess(headerData,bodyData);
                 }
             }
 

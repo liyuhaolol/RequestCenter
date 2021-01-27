@@ -27,4 +27,5 @@ public class MyCenter extends BaseRequestCenter {
         return postRequest(activity, "http://app.jrlamei.com/jrlmCMS/forApp/getChannelNewVersion.jspx", bodyParams, null, typeReference,null, listener);
     }
 
+
 }
