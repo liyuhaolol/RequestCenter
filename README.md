@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.0.8更新
+
+- 更新lib_https到1.1.1版本
+
 ## 1.0.7更新
 
 - 更新lib_https到1.1.0版本
