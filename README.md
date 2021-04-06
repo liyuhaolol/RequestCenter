@@ -4,6 +4,14 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.0更新
+
+- 更新一些请求
+
+## 1.0.9更新
+
+- 替换到jitpack
+
 ## 1.0.8更新
 
 - 更新lib_https到1.1.1版本
@@ -44,12 +52,12 @@
 
 - 在gradle中:
 ```gradle
-    implementation 'spa.lyh.cn:ft_httpcenter:1.0.7'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.1.0'
 ```
 
 ## 引用的主要类
 
-- `api 'spa.lyh.cn:lib_https'` 对okhttp封装本体
+- `api 'com.github.liyuhaolol:HttpUtils'` 对okhttp封装本体
 
 - lib_https框架同时引入了
 
@@ -57,7 +65,7 @@
 
 - `implementation 'com.alibaba:fastjson'`
 
-- `implementation 'spa.lyh.cn:lib_io'`
+- `implementation 'com.github.liyuhaolol:IO'`
 
 ## 类说明
 

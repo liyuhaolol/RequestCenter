@@ -16,6 +16,7 @@ import spa.lyh.cn.lib_https.HttpClient;
 import spa.lyh.cn.lib_https.listener.DisposeDataHandle;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
 import spa.lyh.cn.lib_https.listener.DisposeDownloadListener;
+import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
 import spa.lyh.cn.lib_https.listener.UploadProgressListener;
 import spa.lyh.cn.lib_https.model.FilePart;
 import spa.lyh.cn.lib_https.request.CommonRequest;
@@ -211,6 +212,190 @@ public class BaseRequestCenter {
                 }
             }
         }, typeReference, isApkInDebug(context)));
+
+        return call;
+    }
+
+    protected static Call putRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                loadingDialog.show();
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(activity).sendResquest(CommonRequest.
+                createputRequest(url, params, headers, isApkInDebug(activity)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (!activity.isFinishing()){
+                    if (loadingDialog != null && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
+                    if (listener != null){
+                        try {
+                            listener.onSuccess(headerData,bodyData);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (!activity.isFinishing()) {
+                    if (loadingDialog != null && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
+                    if (listener != null){
+                        try {
+                            listener.onFailure(reasonObj);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(activity)));
+
+        return call;
+    }
+
+    protected static Call putServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
+                createputRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (listener != null){
+                    try {
+                        listener.onSuccess(headerData,bodyData);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (listener != null){
+                    try {
+                        listener.onFailure(reasonObj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(context)));
+
+        return call;
+    }
+
+    protected static Call deleteRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                loadingDialog.show();
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(activity).sendResquest(CommonRequest.
+                createDeleteRequest(url, params, headers, isApkInDebug(activity)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (!activity.isFinishing()){
+                    if (loadingDialog != null && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
+                    if (listener != null){
+                        try {
+                            listener.onSuccess(headerData,bodyData);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (!activity.isFinishing()) {
+                    if (loadingDialog != null && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
+                    if (listener != null){
+                        try {
+                            listener.onFailure(reasonObj);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(activity)));
+
+        return call;
+    }
+
+    protected static Call deleteServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
+                createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (listener != null){
+                    try {
+                        listener.onSuccess(headerData,bodyData);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (listener != null){
+                    try {
+                        listener.onFailure(reasonObj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(context)));
+
+        return call;
+    }
+
+    protected static Call headRequest(Context context, String url, RequestParams headers, final DisposeHeadListener listener) {
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).headResquest(CommonRequest.createHeadRequest(url,headers,isApkInDebug(context)),
+                new DisposeDataHandle(new DisposeHeadListener() {
+                    @Override
+                    public void onSuccess(Headers headerData) {
+                        if (listener != null){
+                            try {
+                                listener.onSuccess(headerData);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Object error) {
+                        if (listener != null){
+                            try {
+                                listener.onFailure(error);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, isApkInDebug(context)));
 
         return call;
     }
