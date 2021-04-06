@@ -51,6 +51,15 @@
 ## 框架引用方法
 
 - 在gradle中:
+
+```gradle
+    allprojects {
+        repositories {
+            maven{url'https://jitpack.io'}
+        }
+    }
+```
+
 ```gradle
     implementation 'com.github.liyuhaolol:RequestCenter:1.1.0'
 ```
