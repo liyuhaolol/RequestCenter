@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.1更新
+
+- 将fastjson暴露出来
+
 ## 1.1.0更新
 
 - 更新一些请求
@@ -61,7 +65,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.1.0'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.1.1'
 ```
 
 ## 引用的主要类
