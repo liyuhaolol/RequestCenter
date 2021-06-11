@@ -26,5 +26,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "com.github.liyuhaolol:HttpUtils:${versions.lib_https}"
-    api "com.alibaba:fastjson:${versions.fastjson}"
+    //api "com.alibaba:fastjson:${versions.fastjson}"
 }
