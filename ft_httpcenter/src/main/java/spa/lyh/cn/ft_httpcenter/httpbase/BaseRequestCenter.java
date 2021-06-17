@@ -20,12 +20,13 @@ import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
 import spa.lyh.cn.lib_https.listener.UploadProgressListener;
 import spa.lyh.cn.lib_https.model.FilePart;
 import spa.lyh.cn.lib_https.request.CommonRequest;
+import spa.lyh.cn.lib_https.request.HeaderParams;
 import spa.lyh.cn.lib_https.request.RequestParams;
 
 public class BaseRequestCenter {
 
     //可以控制是否显示loadingDialog
-    protected static Call postRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+    protected static Call postRequest(final Activity activity, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
@@ -81,7 +82,7 @@ public class BaseRequestCenter {
      * @param typeReference
      * @return
      */
-    protected static Call postServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+    protected static Call postServiceRequest(Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createPostRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
@@ -111,7 +112,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call postFileRequest(final Activity activity, String url, RequestParams params, List<FilePart> fileList, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener, UploadProgressListener uploadListener) {
+    protected static Call postFileRequest(final Activity activity, String url, RequestParams params, List<FilePart> fileList, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener, UploadProgressListener uploadListener) {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
@@ -152,7 +153,7 @@ public class BaseRequestCenter {
     }
 
     //可以控制是否显示loadingDialog
-    protected static Call getRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+    protected static Call getRequest(final Activity activity, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
@@ -194,7 +195,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call getServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+    protected static Call getServiceRequest(Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createGetRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
@@ -216,7 +217,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call putRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+    protected static Call putRequest(final Activity activity, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
@@ -263,7 +264,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call putServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+    protected static Call putServiceRequest(Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createputRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
@@ -293,7 +294,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call deleteRequest(final Activity activity, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
+    protected static Call deleteRequest(final Activity activity, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, final DisposeDataListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
@@ -340,7 +341,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call deleteServiceRequest(Context context, String url, RequestParams params, RequestParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
+    protected static Call deleteServiceRequest(Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
@@ -370,7 +371,7 @@ public class BaseRequestCenter {
         return call;
     }
 
-    protected static Call headRequest(Context context, String url, RequestParams headers, final DisposeHeadListener listener) {
+    protected static Call headRequest(Context context, String url, HeaderParams headers, final DisposeHeadListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).headResquest(CommonRequest.createHeadRequest(url,headers,isApkInDebug(context)),
                 new DisposeDataHandle(new DisposeHeadListener() {

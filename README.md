@@ -4,6 +4,14 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.4更新
+
+- 更新http库
+
+## 1.1.3更新
+
+- 更新http库
+
 ## 1.1.2更新
 
 - 更新http库
@@ -69,7 +77,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.1.2'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.1.4'
 ```
 
 ## 引用的主要类

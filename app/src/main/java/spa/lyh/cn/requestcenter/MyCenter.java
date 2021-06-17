@@ -8,6 +8,7 @@ import okhttp3.Call;
 import spa.lyh.cn.ft_httpcenter.httpbase.BaseRequestCenter;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
+import spa.lyh.cn.lib_https.request.HeaderParams;
 import spa.lyh.cn.lib_https.request.RequestParams;
 
 public class MyCenter extends BaseRequestCenter {
