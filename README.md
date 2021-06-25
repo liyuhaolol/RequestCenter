@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.5更新
+
+- 修正部分方法对成功回调的抓错逻辑
+
 ## 1.1.4更新
 
 - 更新http库
@@ -77,7 +81,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.1.4'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.1.5'
 ```
 
 ## 引用的主要类

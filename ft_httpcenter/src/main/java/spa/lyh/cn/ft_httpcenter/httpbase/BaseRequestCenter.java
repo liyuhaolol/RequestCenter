@@ -44,11 +44,7 @@ public class BaseRequestCenter {
                         loadingDialog.dismiss();
                     }
                     if (listener != null){
-                        try {
-                            listener.onSuccess(headerData,bodyData);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        listener.onSuccess(headerData,bodyData);
                     }
                 }
             }
@@ -89,11 +85,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (listener != null){
-                    try {
-                        listener.onSuccess(headerData,bodyData);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    listener.onSuccess(headerData,bodyData);
                 }
             }
 
@@ -141,7 +133,11 @@ public class BaseRequestCenter {
                                 loadingDialog.dismiss();
                             }
                             if (listener != null){
-                                listener.onFailure(reasonObj);
+                                try{
+                                    listener.onFailure(reasonObj);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
@@ -209,7 +205,11 @@ public class BaseRequestCenter {
             @Override
             public void onFailure(Object reasonObj) {
                 if (listener != null){
-                    listener.onFailure(reasonObj);
+                   try{
+                       listener.onFailure(reasonObj);
+                   }catch (Exception e){
+                       e.printStackTrace();
+                   }
                 }
             }
         }, typeReference, isApkInDebug(context)));
@@ -235,11 +235,7 @@ public class BaseRequestCenter {
                         loadingDialog.dismiss();
                     }
                     if (listener != null){
-                        try {
-                            listener.onSuccess(headerData,bodyData);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        listener.onSuccess(headerData,bodyData);
                     }
                 }
             }
@@ -271,11 +267,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (listener != null){
-                    try {
-                        listener.onSuccess(headerData,bodyData);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    listener.onSuccess(headerData,bodyData);
                 }
             }
 
@@ -312,11 +304,7 @@ public class BaseRequestCenter {
                         loadingDialog.dismiss();
                     }
                     if (listener != null){
-                        try {
-                            listener.onSuccess(headerData,bodyData);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        listener.onSuccess(headerData,bodyData);
                     }
                 }
             }
@@ -348,11 +336,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (listener != null){
-                    try {
-                        listener.onSuccess(headerData,bodyData);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    listener.onSuccess(headerData,bodyData);
                 }
             }
 
@@ -378,11 +362,7 @@ public class BaseRequestCenter {
                     @Override
                     public void onSuccess(Headers headerData) {
                         if (listener != null){
-                            try {
-                                listener.onSuccess(headerData);
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
+                            listener.onSuccess(headerData);
                         }
                     }
 

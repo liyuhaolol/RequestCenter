@@ -3,6 +3,7 @@ package spa.lyh.cn.requestcenter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Headers headerData, Object bodyData) {
                 JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) bodyData;
+                String a = (String) bodyData;
                 if (jsonF.code == MyException.SUCCESS){
                     aaa.setText(jsonF.data.getVersionInfo());
                 }
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Object reasonObj) {
-
+                Log.e("qwer","报错");
             }
         });
     }
