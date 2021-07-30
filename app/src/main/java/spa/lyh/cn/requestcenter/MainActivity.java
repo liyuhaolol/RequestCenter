@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Headers headerData, Object bodyData) {
                 JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) bodyData;
-                String a = (String) bodyData;
                 if (jsonF.code == MyException.SUCCESS){
                     aaa.setText(jsonF.data.getVersionInfo());
                 }

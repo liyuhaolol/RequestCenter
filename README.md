@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.6更新
+
+- 更新http库
+
 ## 1.1.5更新
 
 - 修正部分方法对成功回调的抓错逻辑
