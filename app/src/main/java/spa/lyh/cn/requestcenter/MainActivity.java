@@ -2,6 +2,8 @@ package spa.lyh.cn.requestcenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -38,5 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("qwer","报错");
             }
         });
+        showDialog(getBaseContext());
+    }
+
+
+    private void showDialog(Context context){
+        if (context instanceof Activity){
+            Log.e("qwer","是activity");
+        }else {
+            Log.e("qwer","不是activity");
+        }
     }
 }

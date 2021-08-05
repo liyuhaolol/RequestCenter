@@ -43,7 +43,12 @@ public class BaseRequestCenter {
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
-                    if (listener != null){
+                    boolean sendToListener = true;
+                    if (HttpClient.getInstance(activity).getHttpFilter() != null){
+                        sendToListener = HttpClient.getInstance(activity).getHttpFilter().dataFilter(activity,url,headerData,bodyData);
+                    }
+
+                    if (listener != null && sendToListener){
                         listener.onSuccess(headerData,bodyData);
                     }
                 }
@@ -69,22 +74,17 @@ public class BaseRequestCenter {
         return call;
     }
 
-    /**
-     * 主要给service这种无法得到activity对象的地方使用
-     * @param url
-     * @param params
-     * @param headers
-     * @param listener
-     * @param typeReference
-     * @return
-     */
     protected static Call postServiceRequest(Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final DisposeDataListener listener) {
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
                 createPostRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
-                if (listener != null){
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+                if (listener != null && sendToListener){
                     listener.onSuccess(headerData,bodyData);
                 }
             }
@@ -120,7 +120,11 @@ public class BaseRequestCenter {
                             if (loadingDialog != null && loadingDialog.isShowing()) {
                                 loadingDialog.dismiss();
                             }
-                            if (listener != null){
+                            boolean sendToListener = true;
+                            if (HttpClient.getInstance(activity).getHttpFilter() != null){
+                                sendToListener = HttpClient.getInstance(activity).getHttpFilter().dataFilter(activity,url,headerData,bodyData);
+                            }
+                            if (listener != null && sendToListener){
                                 listener.onSuccess(headerData,bodyData);
                             }
                         }
@@ -165,7 +169,11 @@ public class BaseRequestCenter {
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
-                    if (listener != null){
+                    boolean sendToListener = true;
+                    if (HttpClient.getInstance(activity).getHttpFilter() != null){
+                        sendToListener = HttpClient.getInstance(activity).getHttpFilter().dataFilter(activity,url,headerData,bodyData);
+                    }
+                    if (listener != null && sendToListener){
                         listener.onSuccess(headerData,bodyData);
                     }
                 }
@@ -197,7 +205,11 @@ public class BaseRequestCenter {
                 createGetRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
-                if (listener != null){
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+                if (listener != null && sendToListener){
                     listener.onSuccess(headerData,bodyData);
                 }
             }
@@ -234,7 +246,11 @@ public class BaseRequestCenter {
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
-                    if (listener != null){
+                    boolean sendToListener = true;
+                    if (HttpClient.getInstance(activity).getHttpFilter() != null){
+                        sendToListener = HttpClient.getInstance(activity).getHttpFilter().dataFilter(activity,url,headerData,bodyData);
+                    }
+                    if (listener != null && sendToListener){
                         listener.onSuccess(headerData,bodyData);
                     }
                 }
@@ -266,7 +282,11 @@ public class BaseRequestCenter {
                 createputRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
-                if (listener != null){
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+                if (listener != null && sendToListener){
                     listener.onSuccess(headerData,bodyData);
                 }
             }
@@ -303,7 +323,11 @@ public class BaseRequestCenter {
                     if (loadingDialog != null && loadingDialog.isShowing()) {
                         loadingDialog.dismiss();
                     }
-                    if (listener != null){
+                    boolean sendToListener = true;
+                    if (HttpClient.getInstance(activity).getHttpFilter() != null){
+                        sendToListener = HttpClient.getInstance(activity).getHttpFilter().dataFilter(activity,url,headerData,bodyData);
+                    }
+                    if (listener != null && sendToListener){
                         listener.onSuccess(headerData,bodyData);
                     }
                 }
@@ -335,7 +359,11 @@ public class BaseRequestCenter {
                 createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
-                if (listener != null){
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+                if (listener != null && sendToListener){
                     listener.onSuccess(headerData,bodyData);
                 }
             }
