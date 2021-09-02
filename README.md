@@ -4,6 +4,14 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.8更新
+
+- 增加单一请求可以不走全局拦截器的逻辑
+
+## 1.1.7更新
+
+- 增加http请求的全局拦截器
+
 ## 1.1.6更新
 
 - 更新http库
@@ -85,7 +93,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.1.5'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.1.8'
 ```
 
 ## 引用的主要类
