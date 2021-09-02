@@ -1,6 +1,8 @@
 package spa.lyh.cn.requestcenter;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 
 import com.alibaba.fastjson.TypeReference;
 
@@ -16,16 +18,16 @@ public class MyCenter extends BaseRequestCenter {
     /**
      * 检查更新
      *
-     * @param activity
+     * @param context
      * @param listener
      */
-    public static Call getNewVersion(Activity activity, DisposeDataListener listener) {
+    public static Call getNewVersion(Context context, DisposeDataListener listener) {
         RequestParams bodyParams = new RequestParams();
         bodyParams.put("versionType", "1");
         bodyParams.put("channelType", "XiaoMi");
         TypeReference typeReference = new TypeReference<JsonFromServer<UpdateInfo>>() {
         };
-        return postRequest(activity, "http://app.jrlamei.com/jrlmCMS/forApp/getChannelNewVersion.jspx", bodyParams, null, typeReference,null, listener);
+        return postRequest(context, "http://app.jrlamei.com/jrlmCMS/forApp/getChannelNewVersion.jspx", bodyParams, null, typeReference,generateDialog(context,""), false,listener);
     }
 
 
