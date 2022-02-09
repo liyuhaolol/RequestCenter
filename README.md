@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.1.9更新
+
+- 同步更新网络框架1.2.7，增加请求时长显示
+
 ## 1.1.8更新
 
 - 增加单一请求可以不走全局拦截器的逻辑
