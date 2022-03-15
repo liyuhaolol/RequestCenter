@@ -141,6 +141,18 @@ public class BaseRequestCenter {
     }
 
     /**
+     * 创建Post请求，但不发起请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param params body的键值对
+     * @param headers header的键值对
+     * @return 这次请求本身
+     */
+    protected static Call createPostRequest(Context context, String url, RequestParams params, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createPostRequest(url,params,headers,isApkInDebug(context)));
+    }
+
+    /**
      * Get请求
      * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
      * @param url 请求url
@@ -192,6 +204,18 @@ public class BaseRequestCenter {
         }, typeReference, isApkInDebug(context)));
 
         return call;
+    }
+
+    /**
+     * 创建Get请求，但不发起请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param params body的键值对
+     * @param headers header的键值对
+     * @return 这次请求本身
+     */
+    protected static Call createGetRequest(Context context, String url, RequestParams params, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createGetRequest(url,params,headers,isApkInDebug(context)));
     }
 
     /**

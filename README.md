@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.2.0更新
+
+- 同步更新网络框架1.2.8，增加请求池
+
 ## 1.1.9更新
 
 - 同步更新网络框架1.2.7，增加请求时长显示
@@ -97,7 +101,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.1.8'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.2.0'
 ```
 
 ## 引用的主要类
