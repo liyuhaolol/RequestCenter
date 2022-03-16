@@ -14,12 +14,15 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Headers;
 import spa.lyh.cn.lib_https.HttpClient;
+import spa.lyh.cn.lib_https.MultiRequestCenter;
 import spa.lyh.cn.lib_https.listener.DisposeDataHandle;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
 import spa.lyh.cn.lib_https.listener.DisposeDownloadListener;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
+import spa.lyh.cn.lib_https.listener.RequestResultListener;
 import spa.lyh.cn.lib_https.listener.UploadProgressListener;
 import spa.lyh.cn.lib_https.model.FilePart;
+import spa.lyh.cn.lib_https.multirequest.MultiCall;
 import spa.lyh.cn.lib_https.request.CommonRequest;
 import spa.lyh.cn.lib_https.request.HeaderParams;
 import spa.lyh.cn.lib_https.request.RequestParams;
@@ -402,6 +405,36 @@ public class BaseRequestCenter {
             }
         }
         return dialog;
+    }
+
+    /**
+     * 开始请求池任务
+     * @param context 上下文
+     * @param calls 请求的list
+     * @param listener 结果回调
+     */
+    public static void startRequestPool(Context context, List<MultiCall> calls, RequestResultListener listener){
+        MultiRequestCenter
+                .get()
+                .setDevMode(isApkInDebug(context))
+                .addRequests(calls)
+                .startTasks(listener);
+    }
+
+    /**
+     * 开始请求池
+     * @param context 上下文
+     * @param listener 结果回调
+     * @param calls 请求的数组
+     */
+    public static void startRequestPool(Context context, RequestResultListener listener, MultiCall... calls){
+        MultiRequestCenter mrc = MultiRequestCenter
+                .get()
+                .setDevMode(isApkInDebug(context));
+        for (int i = 0;i < calls.length;i++){
+            mrc.addRequest(calls[i]);
+        }
+        mrc.startTasks(listener);
     }
 
     /**
