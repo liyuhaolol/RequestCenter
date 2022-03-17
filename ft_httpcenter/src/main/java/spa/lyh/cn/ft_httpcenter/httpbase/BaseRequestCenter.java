@@ -415,7 +415,7 @@ public class BaseRequestCenter {
      */
     public static void startRequestPool(Context context, List<MultiCall> calls, RequestResultListener listener){
         MultiRequestCenter
-                .get()
+                .get(context)
                 .setDevMode(isApkInDebug(context))
                 .addRequests(calls)
                 .startTasks(listener);
@@ -429,7 +429,7 @@ public class BaseRequestCenter {
      */
     public static void startRequestPool(Context context, RequestResultListener listener, MultiCall... calls){
         MultiRequestCenter mrc = MultiRequestCenter
-                .get()
+                .get(context)
                 .setDevMode(isApkInDebug(context));
         for (int i = 0;i < calls.length;i++){
             mrc.addRequest(calls[i]);
