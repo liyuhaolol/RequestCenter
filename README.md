@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.2.3更新
+
+- 同步更新网络框架1.3.1，修正log的静态资源复用问题
+
 ## 1.2.2更新
 
 - 同步更新网络框架1.3.0，请求池增加终止标识，和拦截器
@@ -105,7 +109,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.2.2'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.2.3'
 ```
 
 ## 引用的主要类
