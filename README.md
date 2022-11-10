@@ -4,6 +4,10 @@
 
 - Github: https://github.com/liyuhaolol/HttpUtils
 
+## 1.2.4更新
+
+- 尝试修正一个WindowManager$BadTokenException的异常
+
 ## 1.2.3更新
 
 - 同步更新网络框架1.3.1，修正log的静态资源复用问题
@@ -109,7 +113,7 @@
 ```
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.2.3'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.2.4'
 ```
 
 ## 引用的主要类

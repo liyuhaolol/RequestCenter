@@ -46,7 +46,7 @@ public class BaseRequestCenter {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
-                loadingDialog.show();
+                showDialog(context,loadingDialog);
             }
         }
         //创建网络请求
@@ -55,7 +55,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
@@ -70,7 +70,7 @@ public class BaseRequestCenter {
             @Override
             public void onFailure(Object reasonObj) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 if (listener != null){
                     try {
@@ -103,7 +103,7 @@ public class BaseRequestCenter {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
-                loadingDialog.show();
+                showDialog(context,loadingDialog);
             }
         }
 
@@ -112,7 +112,7 @@ public class BaseRequestCenter {
                     @Override
                     public void onSuccess(Headers headerData,Object bodyData) {
                         if (loadingDialog != null && loadingDialog.isShowing()) {
-                            loadingDialog.dismiss();
+                            dismissDialog(context,loadingDialog);
                         }
                         boolean sendToListener = true;
                         if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
@@ -126,7 +126,7 @@ public class BaseRequestCenter {
                     @Override
                     public void onFailure(Object reasonObj) {
                         if (loadingDialog != null && loadingDialog.isShowing()) {
-                            loadingDialog.dismiss();
+                            dismissDialog(context,loadingDialog);
                         }
                         if (listener != null){
                             try{
@@ -171,7 +171,7 @@ public class BaseRequestCenter {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
-                loadingDialog.show();
+                showDialog(context,loadingDialog);
             }
         }
         //创建网络请求
@@ -180,7 +180,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
@@ -194,7 +194,7 @@ public class BaseRequestCenter {
             @Override
             public void onFailure(Object reasonObj) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 try {
                     if (listener != null){
@@ -238,7 +238,7 @@ public class BaseRequestCenter {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
-                loadingDialog.show();
+                showDialog(context,loadingDialog);
             }
         }
         //创建网络请求
@@ -247,7 +247,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
@@ -261,7 +261,7 @@ public class BaseRequestCenter {
             @Override
             public void onFailure(Object reasonObj) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 if (listener != null){
                     try {
@@ -293,7 +293,7 @@ public class BaseRequestCenter {
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
             if (!loadingDialog.isShowing()){
-                loadingDialog.show();
+                showDialog(context,loadingDialog);
             }
         }
         //创建网络请求
@@ -302,7 +302,7 @@ public class BaseRequestCenter {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
@@ -316,7 +316,7 @@ public class BaseRequestCenter {
             @Override
             public void onFailure(Object reasonObj) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                    dismissDialog(context,loadingDialog);
                 }
                 if (listener != null){
                     try {
@@ -450,4 +450,33 @@ public class BaseRequestCenter {
             return false;
         }
     }
+
+    /**
+     * 尝试修正dialog的badtoken的错误
+     * @param context
+     * @param dialog
+     */
+    private static void showDialog(Context context,Dialog dialog){
+        if (context instanceof Activity
+                && !((Activity) context).isFinishing()) {
+            try{
+                dialog.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void dismissDialog(Context context,Dialog dialog){
+        if (context instanceof Activity
+                && !((Activity) context).isFinishing()) {
+            try{
+                dialog.dismiss();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
