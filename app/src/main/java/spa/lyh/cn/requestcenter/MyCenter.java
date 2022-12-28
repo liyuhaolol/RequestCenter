@@ -9,7 +9,10 @@ import com.alibaba.fastjson.TypeReference;
 import okhttp3.Call;
 import spa.lyh.cn.ft_httpcenter.httpbase.BaseRequestCenter;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
+import spa.lyh.cn.lib_https.HttpClient;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
+import spa.lyh.cn.lib_https.listener.DisposeDownloadListener;
+import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
 import spa.lyh.cn.lib_https.request.HeaderParams;
 import spa.lyh.cn.lib_https.request.RequestParams;
 
@@ -28,6 +31,14 @@ public class MyCenter extends BaseRequestCenter {
         TypeReference typeReference = new TypeReference<JsonFromServer<UpdateInfo>>() {
         };
         return postRequest(context, "http://app.jrlamei.com/jrlmCMS/forApp/getChannelNewVersion.jspx", bodyParams, null, typeReference,generateDialog(context,""), false,listener);
+    }
+
+    public static Call downloadFile(Context context,String url, String path, DisposeDownloadListener listener){
+        return downloadFile(context,url,path, HttpClient.OVERWRITE_FIRST,listener);
+    }
+
+    public static Call headRequest(Context context, String url, final DisposeHeadListener listener){
+        return headRequest(context,url,null,listener);
     }
 
 
