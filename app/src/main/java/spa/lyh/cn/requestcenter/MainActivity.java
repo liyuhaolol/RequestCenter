@@ -27,9 +27,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         aaa = findViewById(R.id.aaa);
+        MyCenter.headRequest(this, "https://www.baidu.com", new DisposeHeadListener() {
+            @Override
+            public void onSuccess(Headers headerData) {
+                Log.e("qwer",headerData.toString());
+            }
 
+            @Override
+            public void onFailure(Object error) {
 
-        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
+            }
+        });
+
+/*        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData, Object bodyData) {
                 JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) bodyData;
@@ -42,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Object reasonObj) {
                 Log.e("qwer","报错");
             }
-        });
-        showDialog(getBaseContext());
+        });*/
+        //showDialog(getBaseContext());
 /*        MyCenter.downloadFile(this, "http://ums.offshoremedia.net/front/downloadApp?siteId=694841922577108992&appType=1", getExternalCacheDir().getAbsolutePath(), new DisposeDownloadListener() {
             @Override
             public void onSuccess(String filePath, String fileName) {
