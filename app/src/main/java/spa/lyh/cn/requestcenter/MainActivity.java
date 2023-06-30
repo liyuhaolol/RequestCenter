@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONObject;
 
 import okhttp3.Call;
 import okhttp3.Headers;
@@ -39,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
+        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData, Object bodyData) {
                 JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) bodyData;
                 if (jsonF.code == MyException.SUCCESS){
-                    aaa.setText(jsonF.data.getVersionInfo());
+                    aaa.setText(jsonF.info.toString());
                 }
             }
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Object reasonObj) {
                 Log.e("qwer","报错");
             }
-        });*/
+        });
         //showDialog(getBaseContext());
 /*        MyCenter.downloadFile(this, "http://ums.offshoremedia.net/front/downloadApp?siteId=694841922577108992&appType=1", getExternalCacheDir().getAbsolutePath(), new DisposeDownloadListener() {
             @Override

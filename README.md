@@ -3,6 +3,14 @@
 封装的请求中心
 
 - Github: https://github.com/liyuhaolol/HttpUtils
+- 
+```gradle
+    implementation 'com.github.liyuhaolol:RequestCenter:1.2.5'
+```
+
+## 1.2.5更新
+
+- 更换json解析框架为fastjson2，使用本封装的用户推荐跟随更换，不更换不保证是否会出现BUG
 
 ## 1.2.4更新
 
@@ -112,10 +120,6 @@
     }
 ```
 
-```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.2.4'
-```
-
 ## 引用的主要类
 
 - `api 'com.github.liyuhaolol:HttpUtils'` 对okhttp封装本体
@@ -124,7 +128,7 @@
 
 - `api 'com.squareup.okhttp3:okhttp'`
 
-- `implementation 'com.alibaba:fastjson'`
+- `implementation 'com.alibaba.fastjson2:fastjson2'`
 
 - `implementation 'com.github.liyuhaolol:IO'`
 

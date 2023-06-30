@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson2.TypeReference;
 
 import okhttp3.Call;
 import spa.lyh.cn.ft_httpcenter.httpbase.BaseRequestCenter;
@@ -26,11 +26,11 @@ public class MyCenter extends BaseRequestCenter {
      */
     public static Call getNewVersion(Context context, DisposeDataListener listener) {
         RequestParams bodyParams = new RequestParams();
-        bodyParams.put("versionType", "1");
-        bodyParams.put("channelType", "XiaoMi");
+        bodyParams.put("appType", "1");
+        bodyParams.put("siteId", "924958456908492800");
         TypeReference typeReference = new TypeReference<JsonFromServer<UpdateInfo>>() {
         };
-        return postRequest(context, "http://app.jrlamei.com/jrlmCMS/forApp/getChannelNewVersion.jspx", bodyParams, null, typeReference,generateDialog(context,""), false,listener);
+        return postRequest(context, "https://ums.offshoremedia.net/app/versionInfo", bodyParams, null, typeReference,generateDialog(context,""),false,listener);
     }
 
     public static Call downloadFile(Context context,String url, String path, DisposeDownloadListener listener){

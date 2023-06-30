@@ -5,11 +5,11 @@ plugins {
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
 
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -36,7 +36,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "com.github.liyuhaolol:HttpUtils:${versions.lib_https}"
-    //api "com.alibaba:fastjson:${versions.fastjson}"
 }
 
 afterEvaluate {

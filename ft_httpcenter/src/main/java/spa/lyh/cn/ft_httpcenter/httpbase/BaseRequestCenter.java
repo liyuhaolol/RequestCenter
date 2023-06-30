@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
 
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson2.TypeReference;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
@@ -41,7 +41,7 @@ public class BaseRequestCenter {
      * @param listener 请求回调
      * @return 这次请求本身
      */
-    protected static Call postRequest(final Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog,boolean useHttpFilter, final DisposeDataListener listener) {
+    protected static Call postRequest(final Context context, String url, RequestParams params, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, boolean useHttpFilter, final DisposeDataListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
