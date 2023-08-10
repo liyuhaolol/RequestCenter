@@ -26,8 +26,8 @@ public class MyCenter extends BaseRequestCenter {
      */
     public static Call getNewVersion(Context context, DisposeDataListener listener) {
         RequestParams bodyParams = new RequestParams();
-        bodyParams.put("appType", "1");
-        bodyParams.put("siteId", "924958456908492800");
+        bodyParams.put("appType", 1);
+        bodyParams.put("siteId", 924958456908492800L);
         TypeReference typeReference = new TypeReference<JsonFromServer<UpdateInfo>>() {
         };
         return postRequest(context, "https://ums.offshoremedia.net/app/versionInfo", bodyParams, null, typeReference,generateDialog(context,""),false,listener);
