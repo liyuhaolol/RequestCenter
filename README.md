@@ -5,8 +5,12 @@
 - Github: https://github.com/liyuhaolol/HttpUtils
 - 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.2.6'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.2.7'
 ```
+
+## 1.2.7更新
+
+- 请求中心支持传递，Intager，Float，Double，Long，Boolean等表单值，用于兼容Json数据类型转换
 
 ## 1.2.6更新
 
