@@ -299,7 +299,7 @@ public class BaseRequestCenter {
         }
         //创建网络请求
         Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
-                createputRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+                createPutRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
             @Override
             public void onSuccess(Headers headerData,Object bodyData) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
@@ -331,6 +331,63 @@ public class BaseRequestCenter {
 
         return call;
     }
+
+    /**
+     * Put发送json请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param json body的jsonString
+     * @param headers header的键值对
+     * @param typeReference 返回泛型
+     * @param loadingDialog 网络请求中的加载dialog,传null则没有loading
+     * @param useHttpFilter 这次请求是否经过HttpFilter过滤
+     * @param listener 请求回调
+     * @return 这次请求本身
+     */
+    protected static Call putJsonRequest(final Context context, String url, String json, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, boolean useHttpFilter, final DisposeDataListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                showDialog(context,loadingDialog);
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
+                createPutJsonRequest(url, json, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+
+                if (listener != null && sendToListener){
+                    listener.onSuccess(headerData,bodyData);
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                if (listener != null){
+                    try {
+                        listener.onFailure(reasonObj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(context)));
+
+        return call;
+    }
+
 
     /**
      * Delete请求
@@ -386,6 +443,63 @@ public class BaseRequestCenter {
 
         return call;
     }
+
+    /**
+     * Delete发送json请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param json body的jsonString
+     * @param headers header的键值对
+     * @param typeReference 返回泛型
+     * @param loadingDialog 网络请求中的加载dialog,传null则没有loading
+     * @param useHttpFilter 这次请求是否经过HttpFilter过滤
+     * @param listener 请求回调
+     * @return 这次请求本身
+     */
+    protected static Call deleteJsonRequest(final Context context, String url, String json, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, boolean useHttpFilter, final DisposeDataListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                showDialog(context,loadingDialog);
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
+                createDeleteJsonRequest(url, json, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Headers headerData,Object bodyData) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                }
+
+                if (listener != null && sendToListener){
+                    listener.onSuccess(headerData,bodyData);
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                if (listener != null){
+                    try {
+                        listener.onFailure(reasonObj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, typeReference, isApkInDebug(context)));
+
+        return call;
+    }
+
 
     /**
      * Head请求
