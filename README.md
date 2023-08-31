@@ -5,8 +5,12 @@
 - Github: https://github.com/liyuhaolol/HttpUtils
 - 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.2.9'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.3.0'
 ```
+
+## 1.3.0更新
+
+- 增加几种创建请求的类型
 
 ## 1.2.9更新
 

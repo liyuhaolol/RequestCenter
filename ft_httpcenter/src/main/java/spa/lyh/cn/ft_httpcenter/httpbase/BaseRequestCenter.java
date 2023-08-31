@@ -211,6 +211,10 @@ public class BaseRequestCenter {
         return HttpClient.getInstance(context).createRequest(CommonRequest.createPostRequest(url,params,headers,isApkInDebug(context)));
     }
 
+    protected static Call createJsonPostRequest(Context context, String url, String json, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createPostJsonRequest(url,json,headers,isApkInDebug(context)));
+    }
+
     /**
      * Get请求
      * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
@@ -388,6 +392,13 @@ public class BaseRequestCenter {
         return call;
     }
 
+    protected static Call createPutRequest(Context context, String url, RequestParams params, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createPutRequest(url,params,headers,isApkInDebug(context)));
+    }
+
+    protected static Call createJsonPutRequest(Context context, String url, String json, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createPutJsonRequest(url,json,headers,isApkInDebug(context)));
+    }
 
     /**
      * Delete请求
@@ -500,6 +511,14 @@ public class BaseRequestCenter {
         return call;
     }
 
+
+    protected static Call createDeleteRequest(Context context, String url, RequestParams params, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createDeleteRequest(url,params,headers,isApkInDebug(context)));
+    }
+
+    protected static Call createJsonDeleteRequest(Context context, String url, String json, HeaderParams headers){
+        return HttpClient.getInstance(context).createRequest(CommonRequest.createDeleteJsonRequest(url,json,headers,isApkInDebug(context)));
+    }
 
     /**
      * Head请求
