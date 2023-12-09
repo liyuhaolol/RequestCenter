@@ -5,11 +5,12 @@ plugins {
 
 
 android {
-    compileSdkVersion 33
+    namespace 'spa.lyh.cn.ft_httpcenter'
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 34
 
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -29,7 +30,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'spa.lyh.cn.ft_httpcenter'
 
 }
 
