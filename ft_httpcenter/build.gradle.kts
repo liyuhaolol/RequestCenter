@@ -1,7 +1,7 @@
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.Properties
-import net.thebugmc.gradle.sonatypepublisher.PublishingType.USER_MANAGED
+import net.thebugmc.gradle.sonatypepublisher.PublishingType.AUTOMATIC
 
 plugins {
     id("com.android.library")
@@ -93,7 +93,7 @@ centralPortal {
         }
 
     }
-    publishingType = USER_MANAGED
+    publishingType = AUTOMATIC
     javadocJarTask = tasks.create<Jar>("javadocEmptyJar") {
         archiveClassifier = "javadoc"
     }
