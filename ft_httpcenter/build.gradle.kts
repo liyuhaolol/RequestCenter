@@ -8,7 +8,7 @@ plugins {
     id("net.thebugmc.gradle.sonatype-central-portal-publisher") version "1.2.3"
 }
 
-val versionName = "1.3.3"
+val versionName = "1.3.4"
 
 android {
     namespace = "spa.lyh.cn.ft_httpcenter"
@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    api("io.github.liyuhaolol:HttpUtils:1.4.7")
+    api("io.github.liyuhaolol:HttpUtils:1.4.8")
 }
 
 var signingKeyId = ""//签名的密钥后8位
