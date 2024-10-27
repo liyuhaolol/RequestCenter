@@ -1,6 +1,6 @@
 package spa.lyh.cn.requestcenter;
 
-import spa.lyh.cn.ft_httpcenter.exception.BaseException;
+import spa.lyh.cn.ft_httpcenter.code.BaseException;
 
 public class MyException extends BaseException {
     public final static int COUNTRY_NO_CHANGE = 202;//国家列表未更新，不查询

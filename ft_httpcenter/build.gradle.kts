@@ -8,8 +8,6 @@ plugins {
     id("net.thebugmc.gradle.sonatype-central-portal-publisher") version "1.2.3"
 }
 
-val versionName = "1.3.5"
-
 android {
     namespace = "spa.lyh.cn.ft_httpcenter"
     compileSdk = 35
@@ -33,7 +31,7 @@ android {
 }
 
 dependencies {
-    api("io.github.liyuhaolol:HttpUtils:1.4.9")
+    api("io.github.liyuhaolol:HttpUtils:1.5.0")
 }
 
 var signingKeyId = ""//签名的密钥后8位
@@ -67,7 +65,7 @@ centralPortal {
     password = ossrhPassword
     name = "RequestCenter"
     group = "io.github.liyuhaolol"
-    version = versionName
+    version = "1.3.6"
     pom {
         //packaging = "aar"
         name = "RequestCenter"

@@ -7,15 +7,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import okhttp3.Call;
 import okhttp3.Headers;
-import spa.lyh.cn.ft_httpcenter.exception.BaseException;
+import spa.lyh.cn.ft_httpcenter.code.BaseException;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
-import spa.lyh.cn.lib_https.listener.DisposeDownloadListener;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
 
 public class MainActivity extends AppCompatActivity {
