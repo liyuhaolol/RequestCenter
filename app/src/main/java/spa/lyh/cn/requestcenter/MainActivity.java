@@ -1,5 +1,6 @@
 package spa.lyh.cn.requestcenter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -29,19 +30,19 @@ public class MainActivity extends AppCompatActivity {
         aaa = findViewById(R.id.aaa);
         MyCenter.headRequest(this, "https://www.baidu.com", new DisposeHeadListener() {
             @Override
-            public void onSuccess(Headers headerData) {
+            public void onSuccess(@NonNull Headers headerData) {
                 Log.e("qwer",headerData.toString());
             }
 
             @Override
-            public void onFailure(OkHttpException error) {
+            public void onFailure(@NonNull OkHttpException error) {
 
             }
         });
 
         Call call = MyCenter.getNewVersion(this, new DisposeJsonListener() {
             @Override
-            public void onSuccess(Headers headerData, JSONObject jsonObject) {
+            public void onSuccess(@NonNull Headers headerData, @NonNull JSONObject jsonObject) {
                 JsonFromServer<UpdateInfo> jsonF = jsonObject.to(new TypeReference<JsonFromServer<UpdateInfo>>(){});
                 if (jsonF.code == Code.SUCCESS){
                     aaa.setText(jsonF.info.toString());
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(OkHttpException error) {
+            public void onFailure(@NonNull OkHttpException error) {
                 Log.e("qwer","报错");
             }
         });

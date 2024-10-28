@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    api("io.github.liyuhaolol:HttpUtils:1.5.0")
+    api("io.github.liyuhaolol:HttpUtils:1.5.1")
 }
 
 var signingKeyId = ""//签名的密钥后8位
@@ -65,7 +65,7 @@ centralPortal {
     password = ossrhPassword
     name = "RequestCenter"
     group = "io.github.liyuhaolol"
-    version = "1.3.6"
+    version = "1.3.7"
     pom {
         //packaging = "aar"
         name = "RequestCenter"
