@@ -728,7 +728,7 @@ public class BaseRequestCenter {
      * @param listener 请求回调
      * @return 这次请求本身
      */
-    protected static Call deleteRequest(final Context context, String url, RequestParams params, HeaderParams headers, final Dialog loadingDialog,boolean useHttpFilter, final DisposeDataListener listener) {
+    protected static Call deleteRequest(final Context context, String url, RequestParams params, HeaderParams headers, final Dialog loadingDialog,boolean useHttpFilter, final DisposeJsonListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
@@ -737,36 +737,90 @@ public class BaseRequestCenter {
             }
         }
         //创建网络请求
-        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
-                createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+        Call call = HttpClient.getInstance(context).sendJsonResquest(CommonRequest.
+                createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeJsonListener() {
             @Override
-            public void onSuccess(Headers headerData,Object bodyData) {
+            public void onSuccess(Headers headerData, JSONObject jsonObject) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
                     dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
-                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,jsonObject);
                 }
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,bodyData);
+                    listener.onSuccess(headerData,jsonObject);
                 }
             }
 
             @Override
-            public void onFailure(Object reasonObj) {
+            public void onFailure(OkHttpException error) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
                     dismissDialog(context,loadingDialog);
                 }
                 if (listener != null){
                     try {
-                        listener.onFailure(reasonObj);
+                        listener.onFailure(error);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
-        }, typeReference, isApkInDebug(context)));
+        }, isApkInDebug(context)));
+
+        return call;
+    }
+
+    /**
+     * Delete请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param params body的键值对
+     * @param headers header的键值对
+     * @param loadingDialog 网络请求中的加载dialog,传null则没有loading
+     * @param useHttpFilter 这次请求是否经过HttpFilter过滤
+     * @param listener 请求回调
+     * @return 这次请求本身
+     */
+    protected static Call deleteRequest(final Context context, String url, RequestParams params, HeaderParams headers, final Dialog loadingDialog,boolean useHttpFilter, final DisposeStringListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                showDialog(context,loadingDialog);
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendStringResquest(CommonRequest.
+                createDeleteRequest(url, params, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeStringListener() {
+            @Override
+            public void onSuccess(Headers headerData, String stringBody) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
+                }
+                if (listener != null && sendToListener){
+                    listener.onSuccess(headerData,stringBody);
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException error) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                if (listener != null){
+                    try {
+                        listener.onFailure(error);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, isApkInDebug(context)));
 
         return call;
     }
@@ -777,13 +831,12 @@ public class BaseRequestCenter {
      * @param url 请求url
      * @param json body的jsonString
      * @param headers header的键值对
-     * @param typeReference 返回泛型
      * @param loadingDialog 网络请求中的加载dialog,传null则没有loading
      * @param useHttpFilter 这次请求是否经过HttpFilter过滤
      * @param listener 请求回调
      * @return 这次请求本身
      */
-    protected static Call deleteJsonRequest(final Context context, String url, String json, HeaderParams headers, TypeReference<?> typeReference, final Dialog loadingDialog, boolean useHttpFilter, final DisposeDataListener listener) {
+    protected static Call deleteJsonRequest(final Context context, String url, String json, HeaderParams headers, final Dialog loadingDialog, boolean useHttpFilter, final DisposeJsonListener listener) {
 
         if (loadingDialog != null){
             loadingDialog.setCanceledOnTouchOutside(false);
@@ -792,37 +845,92 @@ public class BaseRequestCenter {
             }
         }
         //创建网络请求
-        Call call = HttpClient.getInstance(context).sendResquest(CommonRequest.
-                createDeleteJsonRequest(url, json, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeDataListener() {
+        Call call = HttpClient.getInstance(context).sendJsonResquest(CommonRequest.
+                createDeleteJsonRequest(url, json, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeJsonListener() {
             @Override
-            public void onSuccess(Headers headerData,Object bodyData) {
+            public void onSuccess(Headers headerData, JSONObject jsonObject) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
                     dismissDialog(context,loadingDialog);
                 }
                 boolean sendToListener = true;
                 if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
-                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,bodyData);
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,jsonObject);
                 }
 
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,bodyData);
+                    listener.onSuccess(headerData,jsonObject);
                 }
             }
 
             @Override
-            public void onFailure(Object reasonObj) {
+            public void onFailure(OkHttpException error) {
                 if (loadingDialog != null && loadingDialog.isShowing()) {
                     dismissDialog(context,loadingDialog);
                 }
                 if (listener != null){
                     try {
-                        listener.onFailure(reasonObj);
+                        listener.onFailure(error);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
-        }, typeReference, isApkInDebug(context)));
+        }, isApkInDebug(context)));
+
+        return call;
+    }
+
+    /**
+     * Delete发送json请求
+     * @param context 上下文,如果使用了generateDialog()则这里必须传Activity
+     * @param url 请求url
+     * @param json body的jsonString
+     * @param headers header的键值对
+     * @param loadingDialog 网络请求中的加载dialog,传null则没有loading
+     * @param useHttpFilter 这次请求是否经过HttpFilter过滤
+     * @param listener 请求回调
+     * @return 这次请求本身
+     */
+    protected static Call deleteJsonRequest(final Context context, String url, String json, HeaderParams headers, final Dialog loadingDialog, boolean useHttpFilter, final DisposeStringListener listener) {
+
+        if (loadingDialog != null){
+            loadingDialog.setCanceledOnTouchOutside(false);
+            if (!loadingDialog.isShowing()){
+                showDialog(context,loadingDialog);
+            }
+        }
+        //创建网络请求
+        Call call = HttpClient.getInstance(context).sendStringResquest(CommonRequest.
+                createDeleteJsonRequest(url, json, headers, isApkInDebug(context)), new DisposeDataHandle(new DisposeStringListener() {
+            @Override
+            public void onSuccess(Headers headerData, String stringBody) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                boolean sendToListener = true;
+                if (HttpClient.getInstance(context).getHttpFilter() != null && useHttpFilter){
+                    sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
+                }
+
+                if (listener != null && sendToListener){
+                    listener.onSuccess(headerData,stringBody);
+                }
+            }
+
+            @Override
+            public void onFailure(OkHttpException error) {
+                if (loadingDialog != null && loadingDialog.isShowing()) {
+                    dismissDialog(context,loadingDialog);
+                }
+                if (listener != null){
+                    try {
+                        listener.onFailure(error);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, isApkInDebug(context)));
 
         return call;
     }
@@ -856,7 +964,7 @@ public class BaseRequestCenter {
                     }
 
                     @Override
-                    public void onFailure(Object error) {
+                    public void onFailure(OkHttpException error) {
                         if (listener != null){
                             try {
                                 listener.onFailure(error);
@@ -893,16 +1001,18 @@ public class BaseRequestCenter {
     public static Dialog generateDialog(Context context, String className){
         Dialog dialog = null;
         if (context instanceof Activity){
-            try{
-                Class clazz = Class.forName(className);
-                Constructor constructor = clazz.getConstructor(Context.class);
-                dialog = (Dialog) constructor.newInstance(context);
-            }catch (Exception e){
-                e.printStackTrace();
-                if (isApkInDebug(context)){
-                    Log.e("generateDialog","没能反射到对应dialog对象,初始化空白占位dialog");
+            if (!((Activity) context).isFinishing()){
+                try{
+                    Class clazz = Class.forName(className);
+                    Constructor constructor = clazz.getConstructor(Context.class);
+                    dialog = (Dialog) constructor.newInstance(context);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    if (isApkInDebug(context)){
+                        Log.e("generateDialog","没能反射到对应dialog对象,初始化空白占位dialog");
+                    }
+                    dialog = new Dialog(context);
                 }
-                dialog = new Dialog(context);
             }
         }else {
             if (isApkInDebug(context)){

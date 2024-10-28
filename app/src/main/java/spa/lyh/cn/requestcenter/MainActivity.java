@@ -9,12 +9,15 @@ import android.util.Log;
 import android.widget.TextView;
 
 
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+
 import okhttp3.Call;
 import okhttp3.Headers;
-import spa.lyh.cn.ft_httpcenter.code.BaseException;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
-import spa.lyh.cn.lib_https.listener.DisposeDataListener;
+import spa.lyh.cn.lib_https.exception.OkHttpException;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
+import spa.lyh.cn.lib_https.listener.DisposeJsonListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,25 +34,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Object error) {
+            public void onFailure(OkHttpException error) {
 
             }
         });
 
-        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
+        Call call = MyCenter.getNewVersion(this, new DisposeJsonListener() {
             @Override
-            public void onSuccess(Headers headerData, Object bodyData) {
-                JsonFromServer<UpdateInfo> jsonF = (JsonFromServer<UpdateInfo>) bodyData;
-                if (jsonF.code == MyException.SUCCESS){
+            public void onSuccess(Headers headerData, JSONObject jsonObject) {
+                JsonFromServer<UpdateInfo> jsonF = jsonObject.to(new TypeReference<JsonFromServer<UpdateInfo>>(){});
+                if (jsonF.code == Code.SUCCESS){
                     aaa.setText(jsonF.info.toString());
                 }
             }
 
             @Override
-            public void onFailure(Object reasonObj) {
+            public void onFailure(OkHttpException error) {
                 Log.e("qwer","报错");
             }
         });
+
         //showDialog(getBaseContext());
 /*        MyCenter.downloadFile(this, "http://ums.offshoremedia.net/front/downloadApp?siteId=694841922577108992&appType=1", getExternalCacheDir().getAbsolutePath(), new DisposeDownloadListener() {
             @Override
@@ -81,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });*/
-    }
 
+        }
 
     private void showDialog(Context context){
         if (context instanceof Activity){
