@@ -5,13 +5,16 @@
 - Github: https://github.com/liyuhaolol/HttpUtils
 - 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.3.7'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.3.8'
 ```
+## 1.3.8更新
+
+- 例行更新http底层
 
 ## 1.3.7更新
 
 - 例行更新http底层
-- 
+
 ## 1.3.6更新
 
 - 同步http底层与json的拆分

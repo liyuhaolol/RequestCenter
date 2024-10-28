@@ -17,8 +17,8 @@ import okhttp3.Call;
 import okhttp3.Headers;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
 import spa.lyh.cn.lib_https.exception.OkHttpException;
+import spa.lyh.cn.lib_https.listener.DisposeDataListener;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
-import spa.lyh.cn.lib_https.listener.DisposeJsonListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Call call = MyCenter.getNewVersion(this, new DisposeJsonListener() {
+        Call call = MyCenter.getNewVersion(this, new DisposeDataListener() {
             @Override
-            public void onSuccess(@NonNull Headers headerData, @NonNull JSONObject jsonObject) {
-                JsonFromServer<UpdateInfo> jsonF = jsonObject.to(new TypeReference<JsonFromServer<UpdateInfo>>(){});
+            public void onSuccess(@NonNull Headers headerData, @NonNull String stringBody) {
+                JsonFromServer<UpdateInfo> jsonF = JSONObject.parseObject(stringBody,new TypeReference<JsonFromServer<UpdateInfo>>(){});
                 if (jsonF.code == Code.SUCCESS){
                     aaa.setText(jsonF.info.toString());
                 }

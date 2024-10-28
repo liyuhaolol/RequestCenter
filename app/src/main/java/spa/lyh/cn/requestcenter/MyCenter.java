@@ -1,18 +1,14 @@
 package spa.lyh.cn.requestcenter;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 
-import com.alibaba.fastjson2.TypeReference;
 
 import okhttp3.Call;
 import spa.lyh.cn.ft_httpcenter.httpbase.BaseRequestCenter;
-import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
 import spa.lyh.cn.lib_https.HttpClient;
+import spa.lyh.cn.lib_https.listener.DisposeDataListener;
 import spa.lyh.cn.lib_https.listener.DisposeDownloadListener;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
-import spa.lyh.cn.lib_https.listener.DisposeJsonListener;
 import spa.lyh.cn.lib_https.request.RequestParams;
 
 public class MyCenter extends BaseRequestCenter {
@@ -23,7 +19,7 @@ public class MyCenter extends BaseRequestCenter {
      * @param context
      * @param listener
      */
-    public static Call getNewVersion(Context context, DisposeJsonListener listener) {
+    public static Call getNewVersion(Context context, DisposeDataListener listener) {
         RequestParams bodyParams = new RequestParams();
         bodyParams.put("appType", 1);
         bodyParams.put("siteId", 924958456908492800L);
