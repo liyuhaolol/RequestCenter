@@ -3,14 +3,14 @@
 封装的请求中心
 
 - Github: https://github.com/liyuhaolol/HttpUtils
-- 
+
 ```gradle
     implementation 'com.github.liyuhaolol:RequestCenter:1.3.9'
 ```
 ## 1.3.9更新
 
 - 例行更新http底层
-- 
+
 ## 1.3.8更新
 
 - 例行更新http底层
