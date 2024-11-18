@@ -5,8 +5,11 @@
 - Github: https://github.com/liyuhaolol/HttpUtils
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.4.0'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.4.1'
 ```
+## 1.4.1更新
+
+- OKCode增加网络请求中的一些基础报错
 ## 1.4.0更新
 
 - 例行更新http底层

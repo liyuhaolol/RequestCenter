@@ -24,8 +24,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility =  JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility =  JavaVersion.VERSION_21
     }
 
 }
@@ -65,7 +65,7 @@ centralPortal {
     password = ossrhPassword
     name = "RequestCenter"
     group = "io.github.liyuhaolol"
-    version = "1.4.0"
+    version = "1.4.1"
     pom {
         //packaging = "aar"
         name = "RequestCenter"
