@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
 
+import com.alibaba.fastjson2.JSONException;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 
@@ -30,6 +31,7 @@ import spa.lyh.cn.lib_https.multirequest.MultiCall;
 import spa.lyh.cn.lib_https.request.CommonRequest;
 import spa.lyh.cn.lib_https.request.HeaderParams;
 import spa.lyh.cn.lib_https.request.RequestParams;
+import spa.lyh.cn.lib_https.response.base.CommonBase;
 
 public class BaseRequestCenter {
 
@@ -66,7 +68,15 @@ public class BaseRequestCenter {
                 }
 
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -120,7 +130,15 @@ public class BaseRequestCenter {
                             sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
                         }
                         if (listener != null && sendToListener){
-                            listener.onSuccess(headerData,stringBody);
+                            try{
+                                listener.onSuccess(headerData,stringBody);
+                            }catch (JSONException e){
+                                e.printStackTrace();
+                                listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                            }
                         }
                     }
 
@@ -175,7 +193,15 @@ public class BaseRequestCenter {
                 }
 
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -244,7 +270,15 @@ public class BaseRequestCenter {
                     sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
                 }
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -310,7 +344,15 @@ public class BaseRequestCenter {
                     sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
                 }
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -365,7 +407,15 @@ public class BaseRequestCenter {
                 }
 
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -428,7 +478,15 @@ public class BaseRequestCenter {
                     sendToListener = HttpClient.getInstance(context).getHttpFilter().dataFilter(context,url,headerData,stringBody);
                 }
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -484,7 +542,15 @@ public class BaseRequestCenter {
                 }
 
                 if (listener != null && sendToListener){
-                    listener.onSuccess(headerData,stringBody);
+                    try{
+                        listener.onSuccess(headerData,stringBody);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.JSON_ERROR, CommonBase.JSON_CONVERT_ERROR,stringBody));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,stringBody));
+                    }
                 }
             }
 
@@ -531,6 +597,12 @@ public class BaseRequestCenter {
                     public void onSuccess(Headers headerData) {
                         if (listener != null){
                             listener.onSuccess(headerData);
+                            try{
+                                listener.onSuccess(headerData);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                listener.onFailure(new OkHttpException(OkHttpException.OTHER_ERROR,CommonBase.EMPTY_MSG,""));
+                            }
                         }
                     }
 
