@@ -7,6 +7,9 @@
 ```gradle
     implementation 'com.github.liyuhaolol:RequestCenter:1.4.2'
 ```
+## 1.4.3更新
+
+- 例行更新http底层
 ## 1.4.2更新
 
 - response回调进行异常抓取，避免App异常闪退

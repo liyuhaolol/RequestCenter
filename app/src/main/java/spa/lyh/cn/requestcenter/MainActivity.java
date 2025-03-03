@@ -13,12 +13,18 @@ import android.widget.TextView;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 import okhttp3.Call;
 import okhttp3.Headers;
 import spa.lyh.cn.ft_httpcenter.model.JsonFromServer;
 import spa.lyh.cn.lib_https.exception.OkHttpException;
 import spa.lyh.cn.lib_https.listener.DisposeDataListener;
 import spa.lyh.cn.lib_https.listener.DisposeHeadListener;
+import spa.lyh.cn.lib_https.listener.DisposeMultiDownloadListener;
+import spa.lyh.cn.lib_https.listener.RequestResultListener;
+import spa.lyh.cn.lib_https.multirequest.MultiDownloadCall;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,6 +92,85 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });*/
+        ArrayList<MultiDownloadCall> calls = new ArrayList<>();
+
+        calls.add(MyCenter.createDownloadFile(
+                this,
+                "https://testcmpweb.sinoing.net/res/dxw/advImgs/2025/02/28/1f05d00d.2d7c.4890.983a.f60830a30d5a452.gif",
+                new DisposeMultiDownloadListener() {
+                    @Override
+                    public boolean onSuccess(@NonNull String filePath, @NonNull String fileName) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onFailure(@NonNull OkHttpException error) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onProgress(boolean haveFileSize, int progress, @NonNull String currentSize, @NonNull String sumSize) {
+
+                    }
+                }));
+        calls.add(MyCenter.createDownloadFile(
+                this,
+                "https://testcmpweb.sinoing.net/res/dxw/advImgs/2025/02/28/bf1d51a1.e938.459a.b445.7ad15110f10c996.gif",
+                new DisposeMultiDownloadListener() {
+                    @Override
+                    public boolean onSuccess(@NonNull String filePath, @NonNull String fileName) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onFailure(@NonNull OkHttpException error) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onProgress(boolean haveFileSize, int progress, @NonNull String currentSize, @NonNull String sumSize) {
+
+                    }
+                }));
+        calls.add(MyCenter.createDownloadFile(
+                this,
+                "https://testcmpweb.sinoing.net/res/dxw/advImgs/2025/02/28/5cfd236b.26ee.47e7.9ff7.94db4c4af13071.gif",
+                new DisposeMultiDownloadListener() {
+                    @Override
+                    public boolean onSuccess(@NonNull String filePath, @NonNull String fileName) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onFailure(@NonNull OkHttpException error) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onProgress(boolean haveFileSize, int progress, @NonNull String currentSize, @NonNull String sumSize) {
+
+                    }
+                }));
+        MyCenter.startDownloadRequestPool(
+                this,
+                calls,
+                Objects.requireNonNull(getExternalFilesDir("splash")).getAbsolutePath(),
+                new RequestResultListener() {
+                    @Override
+                    public void onFinish() {
+                        Log.e("qwer","onFinish");
+                    }
+
+                    @Override
+                    public void onTermination() {
+                        Log.e("qwer","onTermination");
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.e("qwer","onCancel");
+                    }
+                });
 
         }
 
