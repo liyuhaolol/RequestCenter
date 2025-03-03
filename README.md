@@ -7,6 +7,9 @@
 ```gradle
     implementation 'com.github.liyuhaolol:RequestCenter:1.4.2'
 ```
+## 1.4.4更新
+
+- 例行更新http底层
 ## 1.4.3更新
 
 - 例行更新http底层
