@@ -633,8 +633,13 @@ public class BaseRequestCenter {
      * @param listener 请求回调
      * @return 这次请求本身
      */
-    public static Call downloadFile(Context context,String url, String path, int ioMethod, DisposeDownloadListener listener) {
-        return HttpClient.getInstance(context).downloadFile(context,CommonRequest.createGetRequest(url, null, null, isApkInDebug(context)),
+    public static Call getDownloadFile(Context context,String url, String path, int ioMethod, RequestParams params, HeaderParams headers,DisposeDownloadListener listener) {
+        return HttpClient.getInstance(context).downloadFile(context,CommonRequest.createGetRequest(url, params, headers, isApkInDebug(context)),
+                new DisposeDataHandle(listener, path, isApkInDebug(context)),ioMethod);
+    }
+
+    public static Call postDownloadFile(Context context,String url, String path, int ioMethod, RequestParams params, HeaderParams headers, DisposeDownloadListener listener) {
+        return HttpClient.getInstance(context).downloadFile(context,CommonRequest.createPostRequest(url, params, headers, isApkInDebug(context)),
                 new DisposeDataHandle(listener, path, isApkInDebug(context)),ioMethod);
     }
 

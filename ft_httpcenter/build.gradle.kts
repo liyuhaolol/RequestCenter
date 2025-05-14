@@ -65,7 +65,7 @@ centralPortal {
     password = ossrhPassword
     name = "RequestCenter"
     group = "io.github.liyuhaolol"
-    version = "1.4.4"
+    version = "1.4.5"
     pom {
         //packaging = "aar"
         name = "RequestCenter"

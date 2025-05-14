@@ -27,7 +27,7 @@ public class MyCenter extends BaseRequestCenter {
     }
 
     public static Call downloadFile(Context context,String url, String path, DisposeDownloadListener listener){
-        return downloadFile(context,url,path, HttpClient.OVERWRITE_FIRST,listener);
+        return getDownloadFile(context,url,path, HttpClient.OVERWRITE_FIRST,null,null,listener);
     }
 
     public static Call headRequest(Context context, String url, final DisposeHeadListener listener){

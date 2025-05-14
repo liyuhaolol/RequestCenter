@@ -5,8 +5,11 @@
 - Github: https://github.com/liyuhaolol/HttpUtils
 
 ```gradle
-    implementation 'com.github.liyuhaolol:RequestCenter:1.4.2'
+    implementation 'com.github.liyuhaolol:RequestCenter:1.4.5'
 ```
+## 1.4.5更新
+
+- 增加post请求的下载方法
 ## 1.4.4更新
 
 - 例行更新http底层
