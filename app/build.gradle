@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'spa.lyh.cn.requestcenter'
-    compileSdk 35
+    compileSdk 37
 
     defaultConfig {
         applicationId "spa.lyh.cn.requestcenter"
-        minSdk 21
-        targetSdk 35
+        minSdk 23
+        targetSdk 37
         versionCode 1
         versionName "1.0"
 
@@ -21,16 +21,16 @@ android {
     }
 
     compileOptions{
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_25
+        targetCompatibility JavaVersion.VERSION_25
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation project(':ft_httpcenter')
     //implementation 'com.github.liyuhaolol:RequestCenter:1.0.9'
 }
