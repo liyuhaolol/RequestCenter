@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    api("io.github.liyuhaolol:HttpUtils:1.6.0")
+    api("io.github.liyuhaolol:HttpUtils:1.6.1")
 }
 
 // 发布所需密钥，写在 local.properties 或环境变量中（同名）：
@@ -72,7 +72,7 @@ val ossrhPassword: String? = secret("ossrhPassword")
 
 val pomGroup = "io.github.liyuhaolol"
 val pomArtifact = "RequestCenter"
-val pomVersion = "1.4.8"
+val pomVersion = "1.4.9"
 
 val emptyJavadocJar = tasks.register<Jar>("emptyJavadocJar") {
     archiveClassifier.set("javadoc")

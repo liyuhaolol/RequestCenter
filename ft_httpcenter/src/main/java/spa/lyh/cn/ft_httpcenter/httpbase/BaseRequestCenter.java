@@ -629,18 +629,18 @@ public class BaseRequestCenter {
      * @param context 上下文
      * @param url 请求url
      * @param path 下载的文件路径
-     * @param ioMethod 文件写入方式，添加或者覆盖
+     * @param addOnly 文件写入方式，添加或者覆盖
      * @param listener 请求回调
      * @return 这次请求本身
      */
-    public static Call getDownloadFile(Context context,String url, String path, int ioMethod, RequestParams params, HeaderParams headers,DisposeDownloadListener listener) {
+    public static Call getDownloadFile(Context context,String url, String path, boolean addOnly, RequestParams params, HeaderParams headers,DisposeDownloadListener listener) {
         return HttpClient.getInstance(context).downloadFile(context,CommonRequest.createGetRequest(url, params, headers, isApkInDebug(context)),
-                new DisposeDataHandle(listener, path, isApkInDebug(context)),ioMethod);
+                new DisposeDataHandle(listener, path, isApkInDebug(context)),addOnly);
     }
 
-    public static Call postDownloadFile(Context context,String url, String path, int ioMethod, RequestParams params, HeaderParams headers, DisposeDownloadListener listener) {
+    public static Call postDownloadFile(Context context,String url, String path, boolean addOnly, RequestParams params, HeaderParams headers, DisposeDownloadListener listener) {
         return HttpClient.getInstance(context).downloadFile(context,CommonRequest.createPostRequest(url, params, headers, isApkInDebug(context)),
-                new DisposeDataHandle(listener, path, isApkInDebug(context)),ioMethod);
+                new DisposeDataHandle(listener, path, isApkInDebug(context)),addOnly);
     }
 
     public static MultiDownloadCall createDownloadFile(Context context, String url, DisposeMultiDownloadListener listener){
@@ -714,7 +714,7 @@ public class BaseRequestCenter {
         MultiDownloadRequestCenter
                 .get(context)
                 .setDevMode(true)
-                .setOverwriteMod(HttpClient.OVERWRITE_FIRST)
+                .setFileAddOnly(false)
                 .setFilePath(filePath)
                 .addRequests(calls)
                 .startTasks(listener);
@@ -724,7 +724,7 @@ public class BaseRequestCenter {
         MultiDownloadRequestCenter mdrc = MultiDownloadRequestCenter
                 .get(context)
                 .setDevMode(true)
-                .setOverwriteMod(HttpClient.OVERWRITE_FIRST)
+                .setFileAddOnly(false)
                 .setFilePath(filePath);
         for (int i = 0;i < calls.length;i++){
             mdrc.addRequest(calls[i]);
